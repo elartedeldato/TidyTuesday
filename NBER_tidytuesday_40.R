@@ -52,7 +52,7 @@ ggplot(df_plot) +
         plot.title = element_text(size=20, family=font_family_title),
         plot.subtitle = element_text(size=8),
         plot.caption = element_text(size=7, hjust=0.5)) +
-  labs(title="NBER Papers",
+  labs(title="NBER Working Papers",
        subtitle= 'Monthly evolution of the total of NBER working papers classified by program.',
        caption = "Paula L. Casado (@elartedeldato) | Data: National Bureau of Economic Research | #TidyTuesday | Week 40") -> p
 
