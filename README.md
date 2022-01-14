@@ -1,2 +1,0 @@
-# TidyTuesday
-TidyTuesday submissions
