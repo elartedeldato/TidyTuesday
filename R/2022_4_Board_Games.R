@@ -14,7 +14,6 @@ details <- tuesdata$details
 
 caption_title <- '#TidyTuesday 4 of 2022 | Source: Kaggle-Board Games Geek | Author: Paula LC (@elartedeldato)'
 
-library(tidyverse)
 
 ratings %>%
   inner_join(details, by='id') -> df_full
@@ -25,12 +24,19 @@ df_full %>%
   mutate(mechanic:=lapply(lapply(str_split(boardgamemechanic, ','), str_trim), str_replace_all, '[[:punct:]]', '')) %>%
   unnest(mechanic) -> df_full_unnested
 
+details %>%
+  mutate(category:=lapply(lapply(str_split(boardgamecategory, ','), str_trim), str_replace_all, '[[:punct:]]', '')) %>%
+  unnest(category) -> df_category
 
 df_category %>%
   count(category) %>%
   arrange(desc(n)) %>%
   top_n(19) %>%
   pull(category) -> top_categories
+
+details %>%
+  mutate(mechanic:=lapply(lapply(str_split(boardgamemechanic, ','), str_trim), str_replace_all, '[[:punct:]]', '')) %>%
+  unnest(mechanic) -> df_mechanic
 
 df_mechanic %>%
   count(mechanic) %>%
@@ -70,5 +76,6 @@ df_full_unnested %>%
         axis.text.x = element_text(angle=45, hjust=1),
         axis.title.y = element_text(angle = 0),
         axis.text=element_text(color='#adb5bd', size=8))
+
 ggsave('Plots/2022_4_Board_Games.png', height = 8, width=8)
 
