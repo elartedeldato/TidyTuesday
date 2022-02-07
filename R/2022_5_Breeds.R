@@ -36,6 +36,8 @@ bg_color <- '#f7ede2'
 text_color <- '#111111'
 font_size <- 14
 
+caption_title <- '#TidyTuesday 5 of 2022 | Source: American Kennel Club | Author: Paula LC (@elartedeldato)'
+
 ggplot() +
   # Footprints row 1
   geom_ellipse(aes(x0 = 0, y0 = 33, a = 3, b = 5, angle = 0.5, m1 = 2), fill = colors[pull(df[1,],2)], color=bg_color) +
@@ -111,8 +113,10 @@ ggplot() +
   annotate(geom='text', label='Dog Breed Profiles', x=-10, y=80, size=50, hjust=0, family=font_family, color=text_color) +
   annotate(geom='text', label='The graph shows main dog traits for the top 8 dog breeds.',size=15, x=-10, y=65, hjust=0, family=font_family, color=text_color) +
   annotate(geom='text', label='Intesity of the color means higher score of this characteristic.', size=15, x=-10, y=60, hjust=0, family=font_family, color=text_color) +
+  labs(caption=caption_title) +
   theme(plot.background = element_rect(fill=bg_color, color=bg_color),
-        plot.margin=margin(1,1,1,1,'cm'))
+        plot.margin=margin(1,1,1,1,'cm'),
+        plot.caption=element_text(family=font_family, size=20, margin=margin(10,1,1,1)))
 
 ggsave('Plots/2022_5_Breeds.png', height=6, width=7)
 
